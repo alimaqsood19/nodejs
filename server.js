@@ -2,6 +2,10 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 var app = express();
+const port = process.env.PORT || 3000;
+//process.env is an object that stores all our environment variables as
+//key value pairs, and we are looking for one that heroku needs 'PORT'
+//But when app is run locally the port environment variable wont exist so we set a default 
 
 hbs.registerPartials(__dirname + '/views/partials'); 
 //allows partials to be used. A partial is a partial code that can be used multiple times instead of
@@ -68,6 +72,6 @@ app.get('/bad', (req, res) => {
 });
 
 
-app.listen(3000, () => {
-    console.log('Server is up on Port 3000');
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 });
